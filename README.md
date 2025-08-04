@@ -1,3 +1,3 @@
 # DevOps CI/CD
 
-![Results](./assets/screen.jpg)
+![Results](./assets/screen.png)
