@@ -18,7 +18,6 @@
 ```
 ├── .gitignore
 ├── .prettierrc
-├── .terraform.lock.hcl
 ├── README.md
 ├── assets/
 │   ├── screen_01.png
