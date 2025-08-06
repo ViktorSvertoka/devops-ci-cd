@@ -1,0 +1,42 @@
+replicaCount: 2
+
+image:
+  repository:
+  pullPolicy: Always
+  tag: 'latest'
+
+nameOverride: ''
+fullnameOverride: ''
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 8000
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 6
+  targetCPUUtilizationPercentage: 70
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+config:
+  SECRET_KEY: ''
+  DEBUG: 'False'
+  ALLOWED_HOSTS: ''
+  POSTGRES_DB: 'project'
+  POSTGRES_USER: 'myuser'
+  POSTGRES_PASSWORD: 'mypassword'
+  POSTGRES_HOST: 'postgres'
+  POSTGRES_PORT: '5432'
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
