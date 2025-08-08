@@ -48,12 +48,10 @@ resource "aws_subnet" "private" {
 }
 
 resource "aws_eip" "nat" {
-  count = length(var.public_subnets)
-
   domain = "vpc"
 
   tags = {
-    Name        = "${var.vpc_name}-eip-${count.index + 1}"
+    Name        = "${var.vpc_name}-eip"
     Environment = "lesson-7"
   }
 
@@ -61,13 +59,11 @@ resource "aws_eip" "nat" {
 }
 
 resource "aws_nat_gateway" "main" {
-  count = length(var.public_subnets)
-
-  allocation_id = aws_eip.nat[count.index].id
-  subnet_id     = aws_subnet.public[count.index].id
+  allocation_id = aws_eip.nat.id
+  subnet_id     = aws_subnet.public[0].id
 
   tags = {
-    Name        = "${var.vpc_name}-nat-${count.index + 1}"
+    Name        = "${var.vpc_name}-nat"
     Environment = "lesson-7"
   }
 
