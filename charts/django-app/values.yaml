@@ -1,7 +1,7 @@
 replicaCount: 2
 
 image:
-  repository:
+  repository: 892004491299.dkr.ecr.us-east-1.amazonaws.com/lesson-7-django-app
   pullPolicy: Always
   tag: 'latest'
 

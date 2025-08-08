@@ -16,6 +16,8 @@ spec:
       labels:
         {{- include "django-app.selectorLabels" . | nindent 8 }}
     spec:
+      imagePullSecrets:
+        - name: ecr-registry-secret
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
