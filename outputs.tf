@@ -30,5 +30,5 @@ output "eks_cluster_arn" {
 
 output "kubectl_config_command" {
   description = "Command to configure kubectl"
-  value       = "aws eks update-kubeconfig --region eu-north-1 --name ${module.eks.cluster_name}"
+  value       = "aws eks update-kubeconfig --region us-east-1 --name ${module.eks.cluster_name}"
 }
