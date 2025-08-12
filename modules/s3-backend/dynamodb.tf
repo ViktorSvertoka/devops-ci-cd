@@ -12,8 +12,4 @@ resource "aws_dynamodb_table" "terraform_locks" {
     Name        = "Terraform State Lock Table"
     Environment = "lesson-7"
   }
-
-  lifecycle {
-    prevent_destroy = true
-  }
 }

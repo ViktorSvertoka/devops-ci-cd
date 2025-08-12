@@ -12,14 +12,12 @@ provider "aws" {
   region = "us-east-1"
 }
 
-# S3 Backend Module
 module "s3_backend" {
   source      = "./modules/s3-backend"
   bucket_name = "victorsvertoka-terraform-state-lesson-7"
   table_name  = "terraform-locks"
 }
 
-# VPC Module
 module "vpc" {
   source             = "./modules/vpc"
   vpc_cidr_block     = "10.0.0.0/16"
@@ -29,14 +27,12 @@ module "vpc" {
   vpc_name           = "lesson-7-vpc"
 }
 
-# ECR Module
 module "ecr" {
   source       = "./modules/ecr"
   ecr_name     = "lesson-7-django-app"
   scan_on_push = true
 }
 
-# EKS Module
 module "eks" {
   source = "./modules/eks"
   

@@ -1,4 +1,3 @@
-# EKS Cluster IAM Role
 resource "aws_iam_role" "eks_cluster_role" {
   name = "${var.cluster_name}-cluster-role"
 
@@ -26,7 +25,6 @@ resource "aws_iam_role_policy_attachment" "eks_cluster_policy" {
   role       = aws_iam_role.eks_cluster_role.name
 }
 
-# EKS Cluster
 resource "aws_eks_cluster" "main" {
   name     = var.cluster_name
   role_arn = aws_iam_role.eks_cluster_role.arn
@@ -51,7 +49,6 @@ resource "aws_eks_cluster" "main" {
   }
 }
 
-# EKS Node Group IAM Role
 resource "aws_iam_role" "eks_node_group_role" {
   name = "${var.cluster_name}-node-group-role"
 
@@ -89,7 +86,6 @@ resource "aws_iam_role_policy_attachment" "eks_container_registry_policy" {
   role       = aws_iam_role.eks_node_group_role.name
 }
 
-# EKS Node Group
 resource "aws_eks_node_group" "main" {
   cluster_name    = aws_eks_cluster.main.name
   node_group_name = var.node_group_name
@@ -121,13 +117,11 @@ resource "aws_eks_node_group" "main" {
   }
 }
 
-# EKS Add-on: VPC CNI
 resource "aws_eks_addon" "vpc_cni" {
   cluster_name = aws_eks_cluster.main.name
   addon_name   = "vpc-cni"
 }
 
-# EKS Add-on: CoreDNS
 resource "aws_eks_addon" "coredns" {
   cluster_name = aws_eks_cluster.main.name
   addon_name   = "coredns"
@@ -135,7 +129,6 @@ resource "aws_eks_addon" "coredns" {
   depends_on = [aws_eks_node_group.main]
 }
 
-# EKS Add-on: kube-proxy
 resource "aws_eks_addon" "kube_proxy" {
   cluster_name = aws_eks_cluster.main.name
   addon_name   = "kube-proxy"

@@ -3,10 +3,10 @@ replicaCount: 2
 image:
   repository: 892004491299.dkr.ecr.us-east-1.amazonaws.com/lesson-7-django-app
   pullPolicy: Always
-  tag: 'latest'
+  tag: "latest"
 
-nameOverride: ''
-fullnameOverride: ''
+nameOverride: ""
+fullnameOverride: ""
 
 service:
   type: LoadBalancer
@@ -28,14 +28,14 @@ resources:
     memory: 256Mi
 
 config:
-  SECRET_KEY: ''
-  DEBUG: 'False'
-  ALLOWED_HOSTS: ''
-  POSTGRES_DB: 'project'
-  POSTGRES_USER: 'myuser'
-  POSTGRES_PASSWORD: 'mypassword'
-  POSTGRES_HOST: 'postgres'
-  POSTGRES_PORT: '5432'
+  SECRET_KEY: "django-insecure-u(qc9*j0w=ut5db3f#izfz_8szd7rruds!p8p5hgwz0in=+s7t"
+  DEBUG: "False"
+  ALLOWED_HOSTS: "localhost,.us-east-1.elb.amazonaws.com"
+  POSTGRES_DB: "project"
+  POSTGRES_USER: "myuser"
+  POSTGRES_PASSWORD: "mypassword"
+  POSTGRES_HOST: "postgres"
+  POSTGRES_PORT: "5432"
 
 nodeSelector: {}
 tolerations: []
