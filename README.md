@@ -14,30 +14,7 @@
 
 ## Архітектура системи
 
-graph LR
-%% Layout
-linkStyle default interpolate basis
-
-%% Nodes
-Dev[Developer<br/>(commit)]
-Git[(Git<br/>Repository)]
-Jenkins[Jenkins<br/>(CI/Build)]
-ECR[(ECR<br/>(Registry))]
-ArgoCD[Argo CD<br/>(GitOps)]
-EKS[Kubernetes<br/>(EKS)]
-
-%% Edges
-Dev --> Git --> Jenkins --> ECR
-EKS --> ArgoCD
-
-%% Styling (AWS brand palette)
-%% AWS Orange: #FF9900, AWS Navy: #232F3E
-classDef awsOrange fill:#FF9900,color:#ffffff,stroke:#232F3E,stroke-width:2px;
-classDef awsNavy fill:#232F3E,color:#ffffff,stroke:#FF9900,stroke-width:2px;
-
-%% Apply classes
-class ECR,EKS awsOrange;
-class Dev,Git,Jenkins,ArgoCD awsNavy;
+![Results](./assets/schema.png)
 
 ## Структура проєкту
 
