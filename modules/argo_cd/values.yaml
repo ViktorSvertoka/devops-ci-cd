@@ -1,9 +1,7 @@
-# Argo CD Server Configuration
 server:
   service:
     type: LoadBalancer
     
-  # Argo CD UI Configuration
   config:
     application.instanceLabelKey: argocd.argoproj.io/instance
     server.rbac.log.enforce.enable: false
@@ -11,49 +9,40 @@ server:
     admin.enabled: true
     timeout.reconciliation: 180s
     
-  # Additional command line arguments
   extraArgs:
     - --insecure
     
-  # Metrics
   metrics:
     enabled: true
     service:
       type: ClusterIP
 
-# Controller Configuration  
 controller:
   metrics:
     enabled: true
     service:
       type: ClusterIP
       
-# Repository Server Configuration
 repoServer:
   metrics:
     enabled: true
     service:
       type: ClusterIP
 
-# Redis Configuration
 redis:
   enabled: true
   
-# Notifications Controller
 notifications:
   enabled: true
 
-# ApplicationSet Controller
 applicationSet:
   enabled: true
 
-# Global Configuration
 global:
   image:
     repository: quay.io/argoproj/argocd
     tag: v2.8.4
     
-# RBAC Configuration
 configs:
   rbac:
     policy.default: role:readonly
@@ -63,12 +52,10 @@ configs:
       p, role:admin, repositories, *, *, allow
       g, argocd-admins, role:admin
 
-# Secret Management
 configs:
   secret:
     createSecret: true
     
-# TLS Configuration (disabled for simplicity)
 configs:
   tls:
     certificates: {}

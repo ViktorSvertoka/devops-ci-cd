@@ -1,9 +1,7 @@
 controller:
-  # Jenkins Controller Configuration
   image: "jenkins/jenkins"
   tag: "2.426.1-lts"
-  
-  # Resources
+
   resources:
     requests:
       cpu: "1000m"
@@ -12,25 +10,21 @@ controller:
       cpu: "2000m"
       memory: "4Gi"
 
-  # Service configuration
   serviceType: LoadBalancer
   servicePort: 8080
-  
-  # Jenkins Configuration as Code
+
   JCasC:
     defaultConfig: true
     configScripts:
       welcome-message: |
         jenkins:
           systemMessage: "Jenkins for CI/CD Pipeline"
-        
-  # Security
+
   admin:
     existingSecret: ""
     userKey: jenkins-admin-user
     passwordKey: jenkins-admin-password
 
-  # Plugins to install
   installPlugins:
     - kubernetes:3937.vd7b_82db_e347b_
     - workflow-aggregator:2.6
@@ -43,20 +37,17 @@ controller:
     - pipeline-github-lib:38.v445716ea_edda_
     - aws-credentials:191.vcb_f183ce58b_9
 
-  # Additional environment variables
   additionalExistingSecrets:
     - name: aws-credentials
       keyName: aws-access-key-id
     - name: aws-credentials
       keyName: aws-secret-access-key
 
-# Agent configuration
 agent:
   enabled: true
   image: "jenkins/inbound-agent"
   tag: "3107.v665000b_51092-5"
-  
-  # Kaniko agent for Docker builds
+
   podTemplates:
     kaniko: |
       - name: kaniko
@@ -79,24 +70,20 @@ agent:
           secret:
             secretName: aws-credentials
 
-# Persistence
 persistence:
   enabled: true
   storageClass: "gp2"
   size: "20Gi"
   accessMode: "ReadWriteOnce"
 
-# Security Context
 securityContext:
   runAsUser: 1000
   fsGroup: 1000
-  
-# Service Account
+
 serviceAccount:
   create: false
   name: jenkins-admin
 
-# RBAC
 rbac:
   create: true
   readSecrets: true
