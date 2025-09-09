@@ -1,5 +1,11 @@
 # DevOps CI/CD
 
+![Results](./assets/screen_01.png)
+
+![Results](./assets/screen_02.jpeg)
+
+![Results](./assets/screen_03.jpeg)
+
 **CI/CD Platform з Jenkins + Argo CD + Terraform + RDS**
 
 ## Опис проєкту
