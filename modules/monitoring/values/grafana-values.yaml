@@ -1,0 +1,86 @@
+adminUser: admin
+adminPassword: Admin12345!!
+
+service:
+  type: LoadBalancer
+  port: 80
+
+persistence:
+  enabled: true
+  storageClassName: gp2
+  size: 5Gi
+  accessModes:
+    - ReadWriteOnce
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 512Mi
+  limits:
+    cpu: 500m
+    memory: 1Gi
+
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        url: http://prometheus-server.monitoring.svc.cluster.local
+        access: proxy
+        isDefault: true
+        editable: true
+
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+      - name: "default"
+        orgId: 1
+        folder: ""
+        type: file
+        disableDeletion: false
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards/default
+
+dashboards:
+  default:
+    kubernetes-overview:
+      gnetId: 15757
+      revision: 31
+      datasource: Prometheus
+    kubernetes-pods:
+      gnetId: 15760
+      revision: 20
+      datasource: Prometheus
+    prometheus-stats:
+      gnetId: 2
+      revision: 2
+      datasource: Prometheus
+
+grafana.ini:
+  server:
+    root_url: "%(protocol)s://%(domain)s/"
+  auth:
+    disable_login_form: false
+  auth.anonymous:
+    enabled: false
+  users:
+    viewers_can_edit: false
+
+plugins:
+  - grafana-piechart-panel
+  - grafana-worldmap-panel
+
+securityContext:
+  runAsUser: 472
+  runAsGroup: 472
+  fsGroup: 472
+
+rbac:
+  create: true
+  pspEnabled: false
+
+serviceAccount:
+  create: true
