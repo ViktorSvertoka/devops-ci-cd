@@ -54,7 +54,80 @@
 ## Структура проєкту
 
 ```
-
+📁 devops-ci-cd
+├── .gitignore
+├── README.md
+├── assets
+    ├── .gitkeep
+    ├── screen_01.png
+    ├── screen_02.jpeg
+    └── screen_03.jpeg
+├── backend.tf
+├── charts
+    └── django-app
+    │   ├── Chart.yaml
+    │   ├── templates
+    │       ├── _helpers.tpl
+    │       ├── configmap.yaml
+    │       ├── deployment.yaml
+    │       ├── hpa.yaml
+    │       └── service.yaml
+    │   └── values.yaml
+├── kubernetes-secrets.yaml.template
+├── main.tf
+├── modules
+    ├── argo_cd
+    │   ├── argo_cd.tf
+    │   ├── charts
+    │   │   ├── Chart.yaml
+    │   │   ├── templates
+    │   │   │   ├── application.yaml
+    │   │   │   └── repository.yaml
+    │   │   └── values.yaml
+    │   ├── outputs.tf
+    │   ├── providers.tf
+    │   ├── values.yaml
+    │   └── variables.tf
+    ├── ecr
+    │   ├── ecr.tf
+    │   ├── outputs.tf
+    │   └── variables.tf
+    ├── eks
+    │   ├── aws_ebs_csi_driver.tf
+    │   ├── eks.tf
+    │   ├── outputs.tf
+    │   └── variables.tf
+    ├── jenkins
+    │   ├── jenkins.tf
+    │   ├── outputs.tf
+    │   ├── providers.tf
+    │   ├── values.yaml
+    │   └── variables.tf
+    ├── monitoring
+    │   ├── monitoring.tf
+    │   ├── outputs.tf
+    │   ├── providers.tf
+    │   ├── values
+    │   │   ├── grafana-values.yaml
+    │   │   └── prometheus-values.yaml
+    │   └── variables.tf
+    ├── rds
+    │   ├── aurora.tf
+    │   ├── outputs.tf
+    │   ├── rds.tf
+    │   ├── shared.tf
+    │   └── variables.tf
+    ├── s3-backend
+    │   ├── dynamodb.tf
+    │   ├── outputs.tf
+    │   ├── s3.tf
+    │   └── variables.tf
+    └── vpc
+    │   ├── outputs.tf
+    │   ├── routes.tf
+    │   ├── variables.tf
+    │   └── vpc.tf
+└── outputs.tf
 ```
 
 ## Модуль моніторингу (Prometheus + Grafana)
